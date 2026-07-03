@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "*.php": { "runtime": "vercel-php@0.7.3" }
+  },
+  "routes": [
+    { "src": "/", "dest": "/select-storage.php" },
+    { "src": "/index", "dest": "/index.php" },
+    { "src": "/select-storage", "dest": "/select-storage.php" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
