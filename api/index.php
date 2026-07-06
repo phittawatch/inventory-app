@@ -207,8 +207,8 @@
             </a>
             <!-- <a :href="activeItem.folder_url" target="_blank" 
                class="flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl font-bold text-xs sm:text-sm shadow-md hover:scale-[1.02] active:scale-95 transition-all">
-                📂 ดูรูปทั้งหมดใน Drive -->
-            </a>
+                📂 ดูรูปทั้งหมดใน Drive 
+            </a> -->
         </div>
     </div>
 </div>
