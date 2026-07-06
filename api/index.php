@@ -173,7 +173,7 @@
             <p><strong>คลังจัดเก็บ:</strong> <span x-text="activeItem.storage_detail"></span></p>
             <div class="flex justify-between items-center pt-2 border-t border-gray-200">
                 <span class="text-lg font-bold text-purple-700">คงเหลือ: <span x-text="activeItem.avaliable_unit"></span> <span x-text="activeItem.unit"></span></span>
-                <span class="text-xs bg-gray-200 px-2 py-0.5 rounded text-gray-600" x-text="'ราคา: ' + Number(activeItem.price).toLocaleString() + ' THB'"></span>
+                <!-- <span class="text-xs bg-gray-200 px-2 py-0.5 rounded text-gray-600" x-text="'ราคา: ' + Number(activeItem.price).toLocaleString() + ' THB'"></span> -->
             </div>
         </div>
 
