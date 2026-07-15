@@ -6,7 +6,7 @@
     { "src": "/", "dest": "/api/select-storage.php" },
     { "src": "/index", "dest": "/api/index.php" },
     { "src": "/select-storage", "dest": "/api/select-storage.php" },
-    { "src": "/(.*)", "dest": "/api/$1" },
-    { "src": "/dashboard", "dest": "/api/dashboard.php" }
-  ]
+        { "src": "/dashboard", "dest": "/api/dashboard.php" },
+    { "src": "/(.*)", "dest": "/api/$1" }
+    ]
 }
