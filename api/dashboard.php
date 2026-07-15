@@ -1,6 +1,6 @@
 <?php
 // 1. ใส่ Web App URL ที่คุณได้จากการ Deploy
-$webAppUrl = "เปลี่ยนเป็น_WEB_APP_URL_ของคุณที่ได้จากขั้นตอนก่อนหน้านี้";
+$webAppUrl = "https://script.google.com/macros/s/AKfycbzlJCgVtTH0bD7nJsxXobzk_gcOXWnByU1rI4RkkwPOYwPELXpZ8_6OBaN5qBISybfq2w/exec";
 
 // 2. ดึงข้อมูลจาก Google Apps Script API
 $jsonData = file_get_contents($webAppUrl);
