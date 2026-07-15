@@ -81,6 +81,7 @@ $totalPercentage = $overviewRow ? $overviewRow['sell_percentage'] : ($totalStock
       :class="{ 'no-scroll': open || isLoading }"
       x-init="setTimeout(() => { isLoading = false; }, 2500)">
 
+<!-- 1. หน้าจอ Loading Screen -->
 <div x-show="isLoading"
      x-transition:leave="transition ease-in duration-700 transform"
      x-transition:leave-start="translate-y-0 opacity-100"
@@ -114,22 +115,28 @@ $totalPercentage = $overviewRow ? $overviewRow['sell_percentage'] : ($totalStock
     </div>
 </div>
 
+<!-- 2. ส่วนหัวของเว็บแอพ (Header) -->
 <header class="pea-gradient p-6 sm:p-10 shadow-2xl mb-6 sm:mb-10 relative overflow-hidden">
     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
     <div class="container mx-auto text-center relative z-10">
         <h1 class="text-white text-3xl sm:text-5xl font-bold tracking-tighter">PEA <span class="gold-text">TARGET</span> PERFORMANCE</h1>
         <p class="text-purple-200 mt-2 text-sm sm:text-lg">รายงานผลการดำเนินงานเป้าหมาย 30% แยกตามหน่วยงาน ⚡️ กฟฉ.3</p>
+        <!-- เพิ่มป้ายแสดงข้อมูลช่วงเวลา -->
+        <div class="inline-block mt-3 px-4 py-1.5 bg-black/30 rounded-full text-xs text-yellow-300 font-medium tracking-wide backdrop-blur-xs">
+            📅 เป้าหมายพัสดุ: <span class="text-white">สิ้นปี ธ.ค. 2568</span> | ยอดจำหน่ายสะสม: <span class="text-white">ม.ค. 2569 - ปัจจุบัน</span>
+        </div>
     </div>
 </header>
 
 <main class="container mx-auto px-4 pb-20">
+    <!-- 3. ส่วนของ Cards สรุปตัวเลขผลงานรวม (KPI Cards) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
         <div class="bg-white p-5 rounded-3xl shadow-md border border-purple-50 border-l-4 border-purple-700 card-hover transition-all duration-300">
-            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">จำนวนสต็อกทั้งหมด</h3>
+            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">สต็อกเป้าหมาย (ธ.ค. 68)</h3>
             <p class="text-2xl sm:text-3xl font-bold text-purple-950 mt-2"><?php echo number_format($totalStock); ?> <span class="text-xs font-normal text-gray-400">หน่วย</span></p>
         </div>
         <div class="bg-white p-5 rounded-3xl shadow-md border border-purple-50 border-l-4 border-emerald-500 card-hover transition-all duration-300">
-            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">ยอดขายได้จริง</h3>
+            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider">ยอดจำหน่ายจริง (ม.ค. 69 - ปัจจุบัน)</h3>
             <p class="text-2xl sm:text-3xl font-bold text-emerald-600 mt-2"><?php echo number_format($totalSell); ?> <span class="text-xs font-normal text-gray-400">หน่วย</span></p>
         </div>
         <div class="bg-white p-5 rounded-3xl shadow-md border border-purple-50 border-l-4 border-amber-500 card-hover transition-all duration-300">
@@ -143,16 +150,18 @@ $totalPercentage = $overviewRow ? $overviewRow['sell_percentage'] : ($totalStock
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+        <!-- 4. ส่วนแสดงผลกราฟแท่งแบบละเอียด -->
         <div class="lg:col-span-2 bg-white p-5 sm:p-6 rounded-3xl shadow-lg border border-purple-50">
             <div class="mb-4">
-                <h2 class="text-lg font-bold text-purple-900">📊 กราฟเปรียบเทียบ จำนวนสต็อก vs ยอดขายจริง</h2>
-                <p class="text-xs text-gray-400">ข้อมูลวิเคราะห์เชิงปริมาณของแต่ละหน่วยงานย่อย</p>
+                <h2 class="text-lg font-bold text-purple-900">📊 กราฟเปรียบเทียบ จำนวนสต็อกเป้าหมาย vs ยอดขายสะสม</h2>
+                <p class="text-xs text-gray-400">เปรียบเทียบสต็อกเป้าหมายสิ้นปี 68 กับยอดขาย ม.ค. 69 - ปัจจุบัน</p>
             </div>
             <div class="relative h-[320px] sm:h-[400px]">
                 <canvas id="targetChart"></canvas>
             </div>
         </div>
 
+        <!-- 5. ส่วนตารางสรุปรายหน่วยงานย่อย -->
         <div class="bg-white rounded-3xl shadow-lg border border-purple-50 overflow-hidden">
             <div class="p-5 border-b border-purple-50">
                 <h2 class="text-lg font-bold text-purple-900">🏢 สรุปข้อมูลรายหน่วยงาน</h2>
@@ -195,6 +204,7 @@ $totalPercentage = $overviewRow ? $overviewRow['sell_percentage'] : ($totalStock
                 </table>
             </div>
             
+            <!-- แสดงแถวสรุปภาพรวมไว้ด้านล่างสุดของตาราง -->
             <?php if ($overviewRow): ?>
                 <div class="pea-gradient p-4 text-white flex justify-between items-center text-sm font-bold">
                     <span>⚡️ <?php echo htmlspecialchars($overviewRow['organization']); ?></span>
@@ -208,6 +218,7 @@ $totalPercentage = $overviewRow ? $overviewRow['sell_percentage'] : ($totalStock
     </div>
 </main>
 
+<!-- 6. Modal Popup รายละเอียดของแต่ละหน่วยงาน (Alpine.js) -->
 <div x-show="open" class="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4 bg-black/60 backdrop-blur-sm" x-cloak>
     <div class="bg-white rounded-t-[2rem] md:rounded-[2rem] w-full max-w-lg md:max-w-md p-6 relative shadow-[0_-10px_30px_rgba(0,0,0,0.15)] md:shadow-[0_20px_50px_rgba(0,0,0,0.25)] max-h-[90vh] md:max-h-[85vh] overflow-y-auto animate__animated animate__fadeInUp animate__fast" @click.away="open = false">
         
@@ -221,11 +232,11 @@ $totalPercentage = $overviewRow ? $overviewRow['sell_percentage'] : ($totalStock
         
         <div class="space-y-3 text-gray-700 bg-slate-50 p-5 rounded-2xl border border-slate-100 text-sm mb-4">
             <div class="flex justify-between border-b border-gray-100 pb-2">
-                <span class="text-gray-500">จำนวนสต็อกพัสดุ:</span>
+                <span class="text-gray-500">สต็อกเป้าหมาย (สิ้นปี 2568):</span>
                 <span x-text="Number(activeItem.number_stock).toLocaleString() + ' หน่วย'" class="font-semibold text-gray-800"></span>
             </div>
             <div class="flex justify-between border-b border-gray-100 pb-2">
-                <span class="text-gray-500">ยอดจำหน่ายสะสม:</span>
+                <span class="text-gray-500">ยอดจำหน่ายสะสม (ม.ค. 69 - ปัจจุบัน):</span>
                 <span x-text="Number(activeItem.sell_number).toLocaleString() + ' หน่วย'" class="font-bold text-emerald-600"></span>
             </div>
             <div class="flex justify-between border-b border-gray-100 pb-2">
@@ -244,10 +255,10 @@ $totalPercentage = $overviewRow ? $overviewRow['sell_percentage'] : ($totalStock
         </div>
 
         <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-2xl border border-purple-100 text-xs sm:text-sm mb-2">
-            <h4 class="text-purple-900 font-bold text-sm mb-2 flex items-center gap-1.5">⚡️ บทวิเคราะห์ผลงาน</h4>
+            <h4 class="text-purple-900 font-bold text-sm mb-2 flex items-center gap-1.5">⚡️ บทวิเคราะห์ช่วงเวลาผลงาน</h4>
             <p class="text-gray-600 leading-relaxed">
-                หน่วยงานนี้ทำยอดขายได้เป็นสัดส่วน <span class="font-bold text-purple-700" x-text="Number(activeItem.sell_percentage).toFixed(2) + '%'"></span> 
-                จากจำนวนสินค้าในสต็อกทั้งหมดที่มีจำนวน <span class="font-bold text-gray-800" x-text="Number(activeItem.number_stock).toLocaleString()"></span> หน่วย
+                หน่วยงานนี้ทำยอดขายสะสมตั้งแต่ <span class="font-semibold text-purple-950">ม.ค. 2569 เป็นต้นมา</span> ได้เป็นสัดส่วน <span class="font-bold text-purple-700" x-text="Number(activeItem.sell_percentage).toFixed(2) + '%'"></span> 
+                เมื่อเปรียบเทียบกับจำนวนสต็อกที่เป็นเป้าหมายคงค้างของ <span class="font-semibold text-purple-950">สิ้นปี ธ.ค. 2568</span> จำนวน <span class="font-bold text-gray-800" x-text="Number(activeItem.number_stock).toLocaleString()"></span> หน่วย
             </p>
         </div>
 
@@ -257,6 +268,7 @@ $totalPercentage = $overviewRow ? $overviewRow['sell_percentage'] : ($totalStock
     </div>
 </div>
 
+<!-- 7. สคริปต์ควบคุมตัวกราฟ Chart.js -->
 <script>
     const ctx = document.getElementById('targetChart').getContext('2d');
     
@@ -270,17 +282,17 @@ $totalPercentage = $overviewRow ? $overviewRow['sell_percentage'] : ($totalStock
             labels: labelsData,
             datasets: [
                 {
-                    label: 'จำนวนสต็อก (Number Stock)',
+                    label: 'สต็อกเป้าหมาย (สิ้นปี 68)',
                     data: stocksData,
-                    backgroundColor: 'rgba(109, 40, 217, 0.45)', // สีม่วง PEA โปร่งแสง
+                    backgroundColor: 'rgba(109, 40, 217, 0.45)',
                     borderColor: 'rgb(109, 40, 217)',
                     borderWidth: 1.5,
                     borderRadius: 6
                 },
                 {
-                    label: 'ยอดขายได้จริง (Sell Number)',
+                    label: 'ยอดจำหน่ายสะสม (ม.ค. 69 - ปัจจุบัน)',
                     data: sellsData,
-                    backgroundColor: 'rgba(16, 185, 129, 0.85)', // สีเขียว Emerald ชัดเจน
+                    backgroundColor: 'rgba(16, 185, 129, 0.85)',
                     borderColor: 'rgb(16, 185, 129)',
                     borderWidth: 1.5,
                     borderRadius: 6
