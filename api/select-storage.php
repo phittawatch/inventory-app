@@ -122,7 +122,7 @@ $jsonGroupedData = htmlspecialchars(json_encode($groupedData), ENT_QUOTES, 'UTF-
             ⚡️ PEA Region 3 Inventory Management
         </div>
         <h1 class="text-white text-3xl sm:text-6xl font-extrabold tracking-tighter">PEA <span class="gold-text">INVENTORY</span> APP</h1>
-        <p class="text-purple-200/90 mt-2 text-sm sm:text-xl font-light">ระบบศูนย์กลางข้อมูลและวิเคราะห์สถานะคลังพัสดุไฟฟ้าอย่างแม่นยำ</p>
+        <p class="text-purple-200/90 mt-2 text-sm sm:text-xl font-light">ระบบจัดการพัสดุไฟฟ้า อัจฉริยะ ⚡️ ทองคำแห่งการบริหาร</p>
     </div>
 </header>
 
