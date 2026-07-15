@@ -131,7 +131,7 @@ $jsonGroupedData = htmlspecialchars(json_encode($groupedData), ENT_QUOTES, 'UTF-
     <!-- 3. ส่วนสถิติภาพรวมหน้าแรก (ดึงดูดสายตาบอสใหญ่) -->
     <div x-show="selectedSubOf === null" class="grid grid-cols-2 md:grid-cols-2 gap-4 mb-8 max-w-4xl mx-auto animate__animated animate__fadeInUp">
         <div class="bg-gradient-to-br from-purple-900 to-indigo-950 p-5 rounded-3xl text-center text-white border border-white/10 shadow-xl">
-            <span class="text-xs text-purple-200/70 block uppercase font-medium tracking-wider mb-1">หน่วยงานหลัก (sub_of)</span>
+            <span class="text-xs text-purple-200/70 block uppercase font-medium tracking-wider mb-1">หน่วยงานหลัก</span>
             <span class="text-3xl sm:text-4xl font-extrabold gold-text"><?php echo $totalMainUnits; ?></span> <span class="text-xs text-purple-300 font-light">กฟจ.</span>
         </div>
         <div class="bg-gradient-to-br from-amber-500 to-yellow-600 p-5 rounded-3xl text-center text-white border border-white/10 shadow-xl">
@@ -246,7 +246,7 @@ $jsonGroupedData = htmlspecialchars(json_encode($groupedData), ENT_QUOTES, 'UTF-
                 <span x-text="activeItem.materials" class="text-purple-700 font-bold"></span>
             </div>
             <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
-                <span class="text-slate-400">หน่วยงานหลัก (sub_of):</span>
+                <span class="text-slate-400">หน่วยงานหลัก :</span>
                 <span x-text="activeItem.sub_of" class="font-medium"></span>
             </div>
             <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
